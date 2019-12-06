@@ -1,7 +1,6 @@
 ﻿// Learn more about F# at http://fsharp.org
 open System
 open WordGuesser
-open WordGuesser.Config
 
 [<EntryPoint>]
 let main argv =
@@ -35,11 +34,11 @@ let main argv =
                 used <- used @[s]
 
                 for i in 0..pLength-1 do
-                    if  name.[i].ToString() = "*" then
+                    if  name.[i] = Config.HIDDEN then
                         if  answer.[i].ToString() = s then
                             testName <- testName + s
                         else
-                            testName <- testName + "*"
+                            testName <- testName + Config.HIDDEN.ToString()
                     else
                         testName <- testName + name.[i].ToString()
                 name <- testName
